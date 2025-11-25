@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esme Jarrell</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Esme Jarrell</h1>
+        <p class="tagline">Permanent Record of Works</p>
+    </header>
+    
+    <main>
+        <div id="loading" class="loading">
+            <p>Loading works...</p>
+        </div>
+        <div id="gallery" class="gallery"></div>
+    </main>
+
+    <div id="tokenModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
