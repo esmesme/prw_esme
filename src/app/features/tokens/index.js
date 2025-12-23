@@ -1,6 +1,6 @@
 
 import { getProvider } from '../../web3/provider.js';
-import { ethers } from 'ethers';
+import { Contract } from 'ethers/contract';
 import { CONTRACT_ADDRESS, ERC721_ABI } from '../../lib/constants.js';
 
 let _contract = null;
@@ -9,7 +9,7 @@ async function getContract() {
   if (_contract) return _contract;
 
   const provider = await getProvider();
-  _contract = new ethers.Contract(CONTRACT_ADDRESS, ERC721_ABI, provider);
+  _contract = new Contract(CONTRACT_ADDRESS, ERC721_ABI, provider);
   return _contract;
 }
 
