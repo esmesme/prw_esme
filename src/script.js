@@ -1,5 +1,5 @@
 import { getProvider } from "./app/web3/provider.js";
-import { ethers } from "ethers";
+import { Contract } from "ethers/contract";
 import { CONTRACT_ADDRESS, ERC721_ABI } from "./app/lib/constants.js";
 import { resolveENS } from "./app/web3/ens.js";
 import { fetchTokenDataById } from "./app/features/tokens/index.js";
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         provider = await initializeProvider();
-        contract = new ethers.Contract(CONTRACT_ADDRESS, ERC721_ABI, provider);
+        contract = new Contract(CONTRACT_ADDRESS, ERC721_ABI, provider);
         mainnetProvider = await initializeMainnetProvider();
         await loadTokens();
     } catch (error) {
