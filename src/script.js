@@ -1,7 +1,8 @@
 import { getProvider } from "./app/web3/provider.js";
 import { ethers } from "ethers";
-import { MAINNET_RPC_ENDPOINTS, BASE_RPC_ENDPOINTS, CONTRACT_ADDRESS, ERC721_ABI } from "./app/lib/constants.js";
+import { CONTRACT_ADDRESS, ERC721_ABI } from "./app/lib/constants.js";
 import { resolveENS } from "./app/web3/ens.js";
+import { fetchMetadata } from "./app/features/tokens/index.js";
 
 let provider;
 let mainnetProvider;
@@ -200,45 +201,7 @@ async function getMinterAddress(tokenId) {
     }
 }
 
-async function fetchMetadata(uri) {
-    try {
-        if (uri.startsWith('ipfs://')) {
-            uri = uri.replace('ipfs://', 'https://ipfs.io/ipfs/');
-        }
 
-        if (uri.startsWith('ar://')) {
-            uri = uri.replace('ar://', 'https://arweave.net/');
-        }
-
-        const response = await fetch(uri);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const metadata = await response.json();
-
-        const normalized = {
-            name: metadata.name || metadata.Name || '',
-            description: metadata.description || metadata.Description || '',
-            information: metadata.information || metadata.Information || '',
-            image: metadata.image || metadata.image_url || metadata.imageUrl || '',
-            attributes: metadata.attributes || metadata.Attributes || []
-        };
-
-        if (normalized.image) {
-            if (normalized.image.startsWith('ipfs://')) {
-                normalized.image = normalized.image.replace('ipfs://', 'https://ipfs.io/ipfs/');
-            }
-            if (normalized.image.startsWith('ar://')) {
-                normalized.image = normalized.image.replace('ar://', 'https://arweave.net/');
-            }
-        }
-
-        return normalized;
-    } catch (error) {
-        return null;
-    }
-}
 
 function displayTokens() {
     const galleryEl = document.getElementById('gallery');
