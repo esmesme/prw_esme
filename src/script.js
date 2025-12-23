@@ -2,7 +2,7 @@ import { getProvider } from "./app/web3/provider.js";
 import { ethers } from "ethers";
 import { CONTRACT_ADDRESS, ERC721_ABI } from "./app/lib/constants.js";
 import { resolveENS } from "./app/web3/ens.js";
-import { fetchMetadata } from "./app/features/tokens/index.js";
+import { fetchTokenDataById } from "./app/features/tokens/index.js";
 
 let provider;
 let mainnetProvider;
@@ -113,40 +113,6 @@ async function loadTokens() {
     } catch (error) {
         loadingEl.textContent = 'Error loading tokens. Please refresh the page.';
         showError('Failed to load tokens. Please check the console for details.');
-    }
-}
-
-async function fetchTokenDataById(tokenId) {
-    try {
-        let tokenURI;
-        try {
-            tokenURI = await contract.tokenURI(tokenId);
-        } catch (error) {
-            return null;
-        }
-
-        if (!tokenURI || tokenURI === '') {
-            return null;
-        }
-
-        const metadata = await fetchMetadata(tokenURI);
-        if (!metadata) {
-            return null;
-        }
-
-        let currentOwner = null;
-        try {
-            currentOwner = await contract.ownerOf(tokenId);
-        } catch (error) {
-        }
-
-        return {
-            tokenId: tokenId,
-            currentOwner: currentOwner,
-            ...metadata
-        };
-    } catch (error) {
-        return null;
     }
 }
 
