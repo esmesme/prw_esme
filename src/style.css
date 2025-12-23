@@ -1,318 +1,317 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: #d8f2ec;
-    color: #2c2c2c;
-    line-height: 1.6;
-    min-height: 100vh;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #d8f2ec;
+  color: #2c2c2c;
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
 header {
-    text-align: center;
-    padding: 60px 20px 40px;
-    background-color: #d8f2ec;
-    border-bottom: none;
-    max-width: 80%;
-    margin: 0 auto;
+  text-align: center;
+  padding: 60px 20px 40px;
+  background-color: #d8f2ec;
+  border-bottom: none;
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 h1 {
-    font-size: 4.5rem;
-    font-weight: 900;
-    letter-spacing: -1px;
-    color: #1a1a1a;
-    margin-bottom: 10px;
-    text-transform: uppercase;
+  font-size: 4.5rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
 .tagline {
-    font-size: 1.4rem;
-    font-weight: 300;
-    color: #6b6b6b;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    max-width: 95%;
-    margin: 0 auto;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #6b6b6b;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  max-width: 95%;
+  margin: 0 auto;
 }
 
 main {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 60px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 20px;
 }
 
 .loading {
-    text-align: center;
-    padding: 60px 20px;
-    color: #8b8b8b;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+  text-align: center;
+  padding: 60px 20px;
+  color: #8b8b8b;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
 }
 
 .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-    opacity: 0;
-    animation: fadeIn 0.6s ease-in forwards;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  opacity: 0;
+  animation: fadeIn 0.6s ease-in forwards;
 }
 
 @keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 
 .token-item {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .token-item:hover {
-    transform: translateY(-4px);
-    box-shadow: none;
-    border: none;
+  transform: translateY(-4px);
+  box-shadow: none;
+  border: none;
 }
 
 .token-image-container {
-    width: 50%;
-    margin: 0 auto;
-    padding-top: 50%;
-    position: relative;
-    background-color: #d8f2ec;
-    overflow: hidden;
+  width: 50%;
+  margin: 0 auto;
+  padding-top: 50%;
+  position: relative;
+  background-color: #d8f2ec;
+  overflow: hidden;
 }
 
 .token-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
 .token-item:hover .token-image {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .token-title {
-    padding: 20px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #2c2c2c;
-    letter-spacing: 0.5px;
-    text-align: center;
-    border-top: none;
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2c2c2c;
+  letter-spacing: 0.5px;
+  text-align: center;
+  border-top: none;
 }
 
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
-    animation: fadeIn 0.3s ease;
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease;
 }
 
 .modal-content {
-    background-color: #d8f2ec;
-    margin: 5% auto;
-    padding: 0;
-    border: none;
-    width: 90%;
-    max-width: 800px;
-    max-height: 85vh;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    animation: slideUp 0.4s ease;
+  background-color: #d8f2ec;
+  margin: 5% auto;
+  padding: 0;
+  border: none;
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s ease;
 }
 
 @keyframes slideUp {
-    from {
-        transform: translateY(30px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .close {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    color: #6b6b6b;
-    font-size: 32px;
-    font-weight: 300;
-    cursor: pointer;
-    z-index: 1001;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(216, 242, 236, 0.9);
-    border-radius: 50%;
-    transition: all 0.2s ease;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: #6b6b6b;
+  font-size: 32px;
+  font-weight: 300;
+  cursor: pointer;
+  z-index: 1001;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(216, 242, 236, 0.9);
+  border-radius: 50%;
+  transition: all 0.2s ease;
 }
 
 .close:hover {
-    color: #1a1a1a;
-    background-color: #d8f2ec;
-    transform: rotate(90deg);
+  color: #1a1a1a;
+  background-color: #d8f2ec;
+  transform: rotate(90deg);
 }
 
 #modalBody {
-    padding: 60px 40px 40px;
+  padding: 60px 40px 40px;
 }
 
 .modal-image-container {
-    width: 100%;
-    margin-bottom: 40px;
-    text-align: center;
+  width: 100%;
+  margin-bottom: 40px;
+  text-align: center;
 }
 
 .modal-image {
-    max-width: 100%;
-    max-height: 500px;
-    object-fit: contain;
-    border: none;
+  max-width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  border: none;
 }
 
 .modal-title {
-    font-size: 1.8rem;
-    font-weight: 300;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-    color: #1a1a1a;
-    text-align: center;
+  font-size: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+  text-align: center;
 }
 
 .modal-description {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: #4a4a4a;
-    margin-bottom: 40px;
-    font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #4a4a4a;
+  margin-bottom: 40px;
+  font-weight: 300;
 }
 
 .modal-information {
-    font-size: 0.9rem;
-    line-height: 1.8;
-    color: #6b6b6b;
-    margin-bottom: 40px;
-    font-weight: 300;
-    font-style: italic;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: #6b6b6b;
+  margin-bottom: 40px;
+  font-weight: 300;
+  font-style: italic;
 }
 
 .modal-attributes {
-    margin-top: 40px;
-    padding-top: 40px;
-    border-top: none;
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: none;
 }
 
 .modal-attributes h3 {
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-    color: #2c2c2c;
-    text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  color: #2c2c2c;
+  text-transform: uppercase;
 }
 
 .attributes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
 }
 
 .attribute-item {
-    background-color: transparent;
-    padding: 15px;
-    border: none;
+  background-color: transparent;
+  padding: 15px;
+  border: none;
 }
 
 .attribute-type {
-    font-size: 0.75rem;
-    color: #2c2c2c;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
-    font-weight: 700;
+  font-size: 0.75rem;
+  color: #2c2c2c;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  font-weight: 700;
 }
 
 .attribute-value {
-    font-size: 0.9rem;
-    color: #2c2c2c;
-    font-weight: 400;
+  font-size: 0.9rem;
+  color: #2c2c2c;
+  font-weight: 400;
 }
 
 .modal-info-section {
-    margin-top: 40px;
-    padding-top: 40px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .modal-info-item {
-    margin-bottom: 15px;
-    font-size: 0.9rem;
-    line-height: 1.6;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 .modal-info-label {
-    font-weight: 700;
-    color: #2c2c2c;
-    margin-right: 8px;
+  font-weight: 700;
+  color: #2c2c2c;
+  margin-right: 8px;
 }
 
 .modal-info-value {
-    font-weight: 400;
-    color: #2c2c2c;
-    word-break: break-all;
-    font-family: monospace;
-    font-size: 0.85rem;
+  font-weight: 400;
+  color: #2c2c2c;
+  word-break: break-all;
+  font-family: monospace;
+  font-size: 0.85rem;
 }
 
 @media (max-width: 768px) {
-    h1 {
-        font-size: 3rem;
-    }
-    
-    .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 20px;
-    }
-    
-    .modal-content {
-        width: 95%;
-        margin: 10% auto;
-        max-height: 90vh;
-    }
-    
-    #modalBody {
-        padding: 50px 20px 30px;
-    }
-    
-    .attributes-grid {
-        grid-template-columns: 1fr;
-    }
-}
+  h1 {
+    font-size: 3rem;
+  }
 
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .modal-content {
+    width: 95%;
+    margin: 10% auto;
+    max-height: 90vh;
+  }
+
+  #modalBody {
+    padding: 50px 20px 30px;
+  }
+
+  .attributes-grid {
+    grid-template-columns: 1fr;
+  }
+}
