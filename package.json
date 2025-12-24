@@ -3,12 +3,17 @@
   "private": true,
   "scripts": {
     "dev": "bun run --hot ./src/index.html",
-    "build": "bun build ./src/index.html --outdir=dist --minify --production"
+    "build": "bun build ./src/index.html --outdir=dist --minify --production",
+    "format": "biome check --fix"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.3.10",
     "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "ethers": "^6.16.0"
   }
 }
