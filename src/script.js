@@ -2,7 +2,7 @@ import { getProvider } from "./app/web3/provider.js";
 import { Contract } from "ethers/contract";
 import { CONTRACT_ADDRESS, ERC721_ABI } from "./app/lib/constants.js";
 import { resolveENS } from "./app/web3/ens.js";
-import { fetchTokenDataById } from "./app/features/tokens/index.js";
+import { fetchTokenDataById, loadTokens as new_loadTokens } from "./app/features/tokens/index.js";
 
 let provider;
 let mainnetProvider;
@@ -60,60 +60,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         mainnetProvider = await initializeMainnetProvider();
         await loadTokens();
     } catch (error) {
+        console.error("Error initializing application:", error);
         showError('Failed to connect to Base network. Please refresh the page.');
     }
 });
 
 async function loadTokens() {
+
     const loadingEl = document.getElementById('loading');
     const galleryEl = document.getElementById('gallery');
-
-    try {
-        loadingEl.textContent = 'Discovering works...';
-
-        const MIN_TOKEN_ID = 1;
-        const MAX_TOKEN_ID = 49;
-
-        loadingEl.textContent = `Checking tokens ${MIN_TOKEN_ID}-${MAX_TOKEN_ID}...`;
-
-        const tokenPromises = [];
-        for (let tokenId = MIN_TOKEN_ID; tokenId <= MAX_TOKEN_ID; tokenId++) {
-            tokenPromises.push(fetchTokenDataById(tokenId));
-        }
-
-        const BATCH_SIZE = 50;
-        const allTokens = [];
-
-        for (let i = 0; i < tokenPromises.length; i += BATCH_SIZE) {
-            const batch = tokenPromises.slice(i, i + BATCH_SIZE);
-            const batchResults = await Promise.all(batch);
-            allTokens.push(...batchResults);
-
-            const progress = Math.round(((i + BATCH_SIZE) / tokenPromises.length) * 100);
-            loadingEl.textContent = `Checking tokens... ${Math.min(100, progress)}%`;
-        }
-
-        tokens = allTokens.filter(token => token !== null);
-
-        if (tokens.length === 0) {
-            loadingEl.textContent = 'No tokens found.';
-            return;
-        }
-
-        tokens.sort((a, b) => a.tokenId - b.tokenId);
-
-        loadingEl.textContent = `Loading ${tokens.length} works...`;
-
-        displayTokens();
-
+    await new_loadTokens((token) => {
+        const tokenElement = createTokenElement(token);
         loadingEl.style.display = 'none';
-        galleryEl.style.opacity = '1';
-
-        checkUrlForToken();
-    } catch (error) {
-        loadingEl.textContent = 'Error loading tokens. Please refresh the page.';
-        showError('Failed to load tokens. Please check the console for details.');
-    }
+        galleryEl.appendChild(tokenElement);
+    });
+    return ;
 }
 
 async function getMinterAddress(tokenId) {
@@ -167,17 +128,6 @@ async function getMinterAddress(tokenId) {
     }
 }
 
-
-
-function displayTokens() {
-    const galleryEl = document.getElementById('gallery');
-    galleryEl.innerHTML = '';
-
-    tokens.forEach(token => {
-        const tokenElement = createTokenElement(token);
-        galleryEl.appendChild(tokenElement);
-    });
-}
 
 function createTokenElement(token) {
     const tokenDiv = document.createElement('div');
@@ -378,17 +328,4 @@ function showError(message) {
     const loadingEl = document.getElementById('loading');
     loadingEl.textContent = message;
     loadingEl.style.color = '#d32f2f';
-}
-
-function checkUrlForToken() {
-    const hash = window.location.hash;
-    if (hash && hash.startsWith('#token-')) {
-        const tokenId = parseInt(hash.replace('#token-', ''));
-        if (tokenId) {
-            const token = tokens.find(t => t.tokenId === tokenId);
-            if (token) {
-                openModal(token);
-            }
-        }
-    }
 }

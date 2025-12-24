@@ -2,7 +2,7 @@
   "name": "prw_esme",
   "private": true,
   "scripts": {
-    "dev": "bun run --hot ./src/index.html",
+    "dev": "bun run --hot ./src/index.html --console",
     "build": "bun build ./src/index.html --outdir=dist --minify --production",
     "format": "biome check --fix"
   },
